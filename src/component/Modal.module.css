@@ -1,0 +1,45 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(211,211,211,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.modal{
+    background-color: white;
+    border-radius: 5px;
+}
+.modal-header{
+
+}
+.modal-header .close{
+    width: 10px;
+    height: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.modal-center input{
+    padding: 3px ,3px;
+    margin: 10px;
+    width: 300px;
+ 
+}
+.modal-footer{
+    display: flex;
+    justify-self: end;
+}
+.modal-footer .btn{
+    cursor: pointer;
+  padding: 4px;
+  margin: 0px 10px 10px 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: .5s;
+}
+.modal-footer .btn:hover {
+    background-color: #999999;
+    color: rgb(229, 229, 229);
+  }

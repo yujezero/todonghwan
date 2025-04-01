@@ -1,0 +1,27 @@
+.header{
+   
+}
+
+.header p{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.input{
+    border: 2px solid black;
+    border-radius: 4px;
+    color: gray;
+    width: 200px;
+}
+.button{
+    width: 50px;
+    font-size: 12px;
+    background-color: gray;
+    color: white;
+   
+}
+.button:hover{
+    background-color: lightgray;
+    color:black;
+    transition: 0.5s;
+}
