@@ -44,6 +44,14 @@ function getData(){
         setEditId(id)
         setModal((prev)=>!prev)
     }
+    async function Delete(id) {
+        console.log(id);
+        setEditId(id)
+        const response = await fetch(`http://localhost:4000/api/todos/${id}`,
+            {method:"DELETE"}
+        ).then(()=>getData())
+
+    }
 
     return (
         <>
@@ -61,15 +69,16 @@ function getData(){
 
         {todoList?.map((todo)=>{
             return(
-            <div key={todo.id}>
+            <div key={todo.id} className={style["body"]}>
                 <input type="checkbox" checked={todo.isdone}/>
-                <div onClick={()=>ModalHandler(todo.id)}>{todo.text}</div>
-                <button>❌</button>
+                <div onClick={()=>ModalHandler(todo.id)} className={style["text"]}>{todo.text}</div>
+                <span className={style["delete"]} onClick={()=>Delete(todo.id)}>❌</span>
+               
             </div>)
 
         })}
-        {modal? createPortal(<Modal setModal={ModalHandler} todos={todos} todoList={todoList} editId={editId} getData={getData}
-        />,document.body ) :null}
+         {modal? createPortal(<Modal setModal={ModalHandler} todos={todoList?.find(todo => todo.id === editId)?.text || ""} todoList={todoList} editId={editId} getData={getData}
+                />,document.body ) :null}
         </>
     )
 }

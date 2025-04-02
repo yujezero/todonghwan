@@ -1,6 +1,6 @@
 import { useState } from "react"
 import style from "./Modal.module.css"
-function Modal({setModal,todos,editId,todoList}){
+function Modal({setModal,todos,editId,getData,todoList}){
     const [newtodo,setNewTodo] =useState(todos);
 
     function cancel(){
@@ -9,15 +9,14 @@ function Modal({setModal,todos,editId,todoList}){
     function changeHandler(e){
         setNewTodo(e.target.value)
     }
-    function ChangeEdit(){
-        fetch(`http://localhost:3000/todos/${editId}`, {
-            method: "PUT",
+    async function ChangeEdit(){
+        await fetch(`http://localhost:4000/api/todos/${editId}`, {
+            method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ text: newtodo }),
-          });
-        
+          }).then(()=>getData()).then(()=>setModal())
     }
     return(
         <>

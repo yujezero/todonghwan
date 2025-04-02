@@ -25,3 +25,19 @@
     color:black;
     transition: 0.5s;
 }
+
+.body{
+   
+    display: flex;
+    justify-content: center;
+}
+.body input{
+    width: 25px;
+    height: 25px;
+}
+.text{
+    width: 200px;
+}
+.delete:hover{
+    cursor: pointer;
+}
