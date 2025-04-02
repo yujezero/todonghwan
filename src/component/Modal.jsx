@@ -10,9 +10,14 @@ function Modal({setModal,todos,editId,todoList}){
         setNewTodo(e.target.value)
     }
     function ChangeEdit(){
-        todoList.map((item)=>{
-            
-        })
+        fetch(`http://localhost:3000/todos/${editId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text: newtodo }),
+          });
+        
     }
     return(
         <>

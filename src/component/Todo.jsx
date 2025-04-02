@@ -8,12 +8,18 @@ function Todo(){
     const [modal,setModal] =useState(false);
     const [editId, setEditId] = useState(null);
     
-    const url=""
+    const url="http://localhost:4000/api/todos"
 function getData(){
     fetch(url)
-    .then((response)=> response.json)
-    .then((data)=> setTodoList(data));
+    .then((response)=> response.json())
+    .then((data)=> {
+        console.log(data.data)
+        setTodoList(data.data);
+    })
+    // setTodoList(data.data));
 }
+
+
     useEffect(()=>{
         getData()
     },[])
@@ -46,7 +52,7 @@ function getData(){
         </div>
         <form onSubmit={subMitHandler}>
             <span>TODO</span>
-            <input name="done" type="checkbox"/>
+            
             <input type="text" placeholder="할 일을 적어주세요"
             onChange={changeHandler} className={style["input"]}/>
           
@@ -54,14 +60,16 @@ function getData(){
         </form>
 
         {todoList?.map((todo)=>{
+            return(
             <div key={todo.id}>
-                <input type="checkbox" checked={todo.isdone ? true:false}/>
+                <input type="checkbox" checked={todo.isdone}/>
                 <div onClick={()=>ModalHandler(todo.id)}>{todo.text}</div>
                 <button>❌</button>
-            </div>
+            </div>)
 
         })}
-        {modal? createPortal(<Modal setModal={ModalHandler} todos={todos} todoList={todoList} editId={editId}/>,document.body ) :null}
+        {modal? createPortal(<Modal setModal={ModalHandler} todos={todos} todoList={todoList} editId={editId} getData={getData}
+        />,document.body ) :null}
         </>
     )
 }
